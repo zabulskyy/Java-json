@@ -2,6 +2,7 @@ package domain;
 
 import json.*;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -10,12 +11,21 @@ import java.util.List;
  */
 public class Student extends BasicStudent {
 
+    private JsonArray exams;
+
     public Student(String name, String surname, Integer year, Tuple<String, Integer>... exams) {
-        // ToDo
+        for (Tuple<String, Integer> exam : exams) {
+
+        }
     }
 
     public JsonObject toJsonObject() {
-        // ToDo
+        JsonObject jsonObject = new JsonObject(
+                new JsonPair("name", new JsonString(this.name)),
+                new JsonPair("surname", new JsonString(this.surname)),
+                new JsonPair("year", new JsonNumber(this.year)),
+                new JsonPair("exams", this.exams)
+        );
         return null;
     }
 }
