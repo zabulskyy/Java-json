@@ -12,14 +12,9 @@ public class JsonObject extends Json {
 
     public JsonObject(JsonPair... jsonPairs) {
         this.values = new ArrayList<>();
+        boolean added = false;
         for (JsonPair pair : jsonPairs) {
-            for (int i = 0; i < this.values.size(); i++) {
-                if (this.values.get(i).key.equals(pair.key)) {
-                    this.values.add(i, pair);
-                    break;
-                }
-            }
-            this.values.add(pair);
+            this.add(pair);
         }
     }
 
@@ -40,16 +35,51 @@ public class JsonObject extends Json {
     }
 
     public void add(JsonPair jsonPair) {
-        // ToDo
+        boolean added = false;
+
+        for (int i = 0; i < this.values.size(); i++) {
+            if (this.values.get(i).key.equals(jsonPair.key)) {
+                this.values.set(i, jsonPair);
+                added = true;
+                break;
+            }
+        }
+        if (!added) {
+            this.values.add(jsonPair);
+        }
     }
 
+
     public Json find(String name) {
-        // ToDo
+        for (JsonPair pair : this.values) {
+            if (pair.key.equals(name)) {
+                return pair.value;
+            }
+        }
         return null;
+
     }
 
     public JsonObject projection(String... names) {
-        // ToDo
-        return null;
+        JsonObject jsonObject = new JsonObject();
+        for (String name : names) {
+
+            for (JsonPair pair : this.values) {
+                if (pair.key.equals(name)) {
+                    jsonObject.add(pair);
+                }
+            }
+        }
+        return jsonObject;
+    }
+
+    public boolean contains(String name) {
+
+        for (JsonPair pair : this.values) {
+            if (pair.key.equals(name)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
