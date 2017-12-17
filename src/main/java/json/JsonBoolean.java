@@ -5,13 +5,14 @@ package json;
  */
 public class JsonBoolean extends Json {
 
+    private boolean value;
+
     public JsonBoolean(Boolean bool) {
-        // ToDo
+        this.value = bool;
     }
 
     @Override
     public String toJson() {
-        // ToDo
-        return null;
+        return value ? "true" : "false";
     }
 }

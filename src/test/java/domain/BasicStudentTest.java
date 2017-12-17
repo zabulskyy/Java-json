@@ -21,3 +21,4 @@ public class BasicStudentTest {
         JSONAssert.assertEquals(expectedJSON, jsonObject.toJson(), true);
     }
 }
+
