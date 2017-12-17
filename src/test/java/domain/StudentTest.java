@@ -25,12 +25,11 @@ public class StudentTest {
 
         String expectedJSON =
                 "{'name': 'Andrii', 'surname': 'Rodionov', 'year': 3, 'exams': []}";
-
         JSONAssert.assertEquals(expectedJSON, jsonObject.toJson(), true);
     }
 
     @Test
-    public void  testToJsonWithSeveralExams() throws Exception {
+    public void testToJsonWithSeveralExams() throws Exception {
 
         Student student = new Student(
                 "Andrii",
